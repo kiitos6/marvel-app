@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card (click)="goToCardDetails()" class="card-item" appearance="outlined">
     <mat-card-header>
         <img mat-card-xl-image src="{{character.thumbnail.path + '.' + character.thumbnail.extension}}" >
     </mat-card-header>

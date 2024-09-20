@@ -13,4 +13,8 @@ export class CharacterListItemComponent {
 
   @Input() character!: Character;
 
+  goToCardDetails(): void {
+    console.log('show detail')
+  }
+
 }
