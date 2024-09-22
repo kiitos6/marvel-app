@@ -3,7 +3,7 @@ import { HomeService } from './service/home.service';
 import { Observable } from 'rxjs';
 import { CharacterListItemComponent } from './components/character-list-item/character-list-item.component';
 import { CommonModule } from '@angular/common';
-import { CharactersResponseDTO } from '../shared/models/character';
+import { Character, CharactersResponseDTO } from '../shared/models/character';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @Component({
@@ -15,8 +15,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 })
 export class HomeComponent implements OnInit{
 
-  charactersListResponse$!: Observable<any>
-  charactersList!: any[];
+  charactersList!: Character[];
+  charactersSearchResultsList!: Character[];
 
   constructor(private homeService: HomeService) {
 
@@ -24,13 +24,22 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadCharacters();
+    //TODO: spinner de carga
   }
 
   private loadCharacters(): void {
-    this.charactersListResponse$ = this.homeService.getCharactersList();
     this.homeService.getCharactersList().subscribe((characters: CharactersResponseDTO) => {
-      console.log(characters);
       this.charactersList = characters.data.results;
+    },
+  (error) => {
+    //TODO: show generic error
+  });
+  }
+
+  searchCharacters(value: string): void {
+    this.homeService.getCharactersListByName(value).subscribe((characters: CharactersResponseDTO) => {
+      this.charactersList = characters.data.results;
+      //TODO: if results.length == 0, show a text with 'No results'
     },
   (error) => {
     //TODO: show generic error

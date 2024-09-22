@@ -1,0 +1,23 @@
+<mat-toolbar>
+    <button mat-icon-button class="example-icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Marvel Guide App</span>
+    <span class="example-spacer"></span>
+    <app-search-bar (searchValue)="searchCharacters($event)"></app-search-bar>
+    <!-- <mat-form-field class="example-form-field">
+        <mat-label>Type to search...</mat-label>
+        <span matTextPrefix>
+            <mat-icon>search</mat-icon> &nbsp;
+        </span>
+        <input matInput type="text" [(ngModel)]="value">
+        @if (value) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+    </mat-form-field> -->
+    <button mat-icon-button>
+      <mat-icon>filter_alt</mat-icon>
+    </button>
+</mat-toolbar>
