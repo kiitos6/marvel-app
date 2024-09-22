@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CharactersResponseDTO } from '../../shared/models/character';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,10 @@ export class HomeService {
     private httpClient: HttpClient
   ) { }
 
-  getCharactersList(): Observable<any> {
-    return this.httpClient.get(this.baseUrl+'/v1/public/characters', {params: this.params});
+  getCharactersList(): Observable<CharactersResponseDTO> {
+    return this.httpClient.get<CharactersResponseDTO>(
+      this.baseUrl+'/v1/public/characters',
+      {params: this.params}
+    );
   }
 }

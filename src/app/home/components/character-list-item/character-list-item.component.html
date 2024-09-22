@@ -1,4 +1,4 @@
-<mat-card (click)="goToCardDetails()" class="card-item" appearance="outlined">
+<mat-card  class="card-item" appearance="outlined">
     <mat-card-header>
         <img mat-card-xl-image src="{{character.thumbnail.path + '.' + character.thumbnail.extension}}" >
     </mat-card-header>
@@ -6,5 +6,8 @@
         <span>
             {{ character.name }}
         </span>
-    </mat-card-content>
-</mat-card>
+        <button mat-raised-button (click)="openDetailsDialog()">
+            View details
+        </button>
+        </mat-card-content>
+    </mat-card>

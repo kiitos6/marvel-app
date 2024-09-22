@@ -1,1 +1,18 @@
-<p>character-details works!</p>
+<mat-card  class="card-item" appearance="outlined">
+    <mat-card-header>
+        <img mat-card-xl-image src="{{character.thumbnail.path + '.' + character.thumbnail.extension}}">
+    </mat-card-header>
+    <mat-card-content>
+        <h2>
+            {{ character.name }}
+        </h2>
+        <p>
+            {{ character.description }}
+        </p>
+    </mat-card-content>
+    <mat-dialog-actions>
+        <button mat-raised-button [mat-dialog-close]>
+            Close
+        </button>
+    </mat-dialog-actions>
+</mat-card>

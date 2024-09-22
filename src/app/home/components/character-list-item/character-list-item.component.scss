@@ -4,5 +4,7 @@
     mat-card-content {
         margin-top: 4px;
         text-align: center;
+        display: flex;
+        flex-direction: column;
     }
 }
