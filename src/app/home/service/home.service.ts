@@ -16,12 +16,13 @@ export class HomeService {
     private httpClient: HttpClient
   ) { }
 
-  getCharactersList(): Observable<CharactersResponseDTO> {
+  getCharactersList(offset: number): Observable<CharactersResponseDTO> {
     return this.httpClient.get<CharactersResponseDTO>(
       this.baseUrl + '/v1/public/characters',
       {
         params: {
-          apikey: this.apikey
+          apikey: this.apikey,
+          offset: offset
         }
       }
     );
@@ -39,6 +40,6 @@ export class HomeService {
         }
       );
     }
-    return this.getCharactersList();
+    return this.getCharactersList(0);
   }
 }

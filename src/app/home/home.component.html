@@ -1,7 +1,17 @@
 <app-toolbar (searchValue)="searchCharacters($event)"></app-toolbar>
-<div class="main-container">
+<div class="main-container"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    (scrolled)="onScroll()"
+>
     <app-character-list-item 
         *ngFor="let character of charactersList"
         [character]="character">
     </app-character-list-item>
 </div>
+<app-scroll-top-btn (scrollToTop)="scrollTop()"></app-scroll-top-btn>
+@if(isLoading){
+    <mat-spinner class="spinner"></mat-spinner>
+    <div class="container-spinner">
+    </div>
+}
