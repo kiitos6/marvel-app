@@ -14,7 +14,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   standalone: true,
   imports: [
     CharacterListItemComponent,
-    CommonModule,
     ToolbarComponent,
     InfiniteScrollDirective,
     ScrollTopBtnComponent,
@@ -57,8 +56,11 @@ export class HomeComponent implements OnInit{
   }
 
   searchCharacters(value: string): void {
+    this.isLoading = true;
     this.homeService.getCharactersListByName(value).subscribe((characters: CharactersResponseDTO) => {
       this.charactersList = characters.data.results;
+      this.isLoading = false;
+
       //TODO: if results.length == 0, show a text with 'No results'
     },
   (error) => {

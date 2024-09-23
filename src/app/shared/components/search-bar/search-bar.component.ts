@@ -39,7 +39,6 @@ export class SearchBarComponent {
   restartSearch(): void {
     this.value = '';
     this.debouncer.next(this.value);
-
   }
 
 }
