@@ -1,0 +1,19 @@
+<mat-card  class="card-item" appearance="outlined">
+    <mat-card-header>
+        <img mat-card-xl-image src="{{comic.thumbnail.path + '.' + comic.thumbnail.extension}}" >
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{ comic.title }}
+        </p>
+        <button mat-raised-button
+            [disabled]="comic.characters.available === 0"
+            (click)="getComicCharacters()">
+            View comic characters
+        </button>
+    </mat-card-content>
+</mat-card>
+@if(isLoading){
+    <mat-spinner class="spinner"></mat-spinner>
+    <div class="container-spinner"></div>
+}

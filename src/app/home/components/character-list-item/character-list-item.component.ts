@@ -19,7 +19,6 @@ export class CharacterListItemComponent {
   @Input() character!: Character;
 
   openDetailsDialog(): void {
-    console.log(this.character)
     this.detailsDialog.open(CharacterDetailsDialogComponent, {
       data: this.character
     });

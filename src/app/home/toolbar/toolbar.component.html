@@ -1,0 +1,14 @@
+<mat-toolbar>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="goToHome()">Characters</button>
+      <button mat-menu-item (click)="goToComics()">Comics</button>
+    </mat-menu>
+    <span>Marvel Guide App</span>
+    <span class="example-spacer"></span>
+    @if(showSearchBar){
+      <app-search-bar (searchValue)="searchCharacters($event)"></app-search-bar>
+    }
+</mat-toolbar>

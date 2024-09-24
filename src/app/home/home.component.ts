@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CharacterListItemComponent } from './components/character-list-item/character-list-item.component';
 import { CommonModule } from '@angular/common';
 import { Character, CharactersResponseDTO } from '../shared/models/character';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 import {InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { ScrollTopBtnComponent } from '../shared/components/scroll-top-btn/scroll-top-btn.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -42,18 +42,21 @@ export class HomeComponent implements OnInit{
   }
 
   private loadCharacters(): void {
-    this.homeService.getCharactersList(this.offset).subscribe((characters: CharactersResponseDTO) => {
-      this.charactersList.push(...characters.data.results);
-      this.isLoading = false;
-      if(this.offset === 0) {
-        this.totalCharacters = characters.data.total;
-        this.totalPages = (this.totalCharacters / characters.data.count) + 1;
-      }
-    },
-  (error) => {
-    //TODO: show generic error
-  });
+    this.homeService.getCharactersList(this.offset).subscribe({
+      next: (characters: CharactersResponseDTO) => {
+        this.charactersList.push(...characters.data.results);
+        this.isLoading = false;
+        if(this.offset === 0) {
+          this.totalCharacters = characters.data.total;
+          this.totalPages = (this.totalCharacters / characters.data.count) + 1;
+        }
+      },
+      error: (e) => {
+      //TODO: show generic error
+      },
+    });
   }
+
 
   searchCharacters(value: string): void {
     this.isLoading = true;

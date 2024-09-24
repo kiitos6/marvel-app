@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { SearchBarComponent } from '../../../shared/components/search-bar/search-bar.component';
-
+import { SearchBarComponent } from '../../shared/components/search-bar/search-bar.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,7 +13,9 @@ import { SearchBarComponent } from '../../../shared/components/search-bar/search
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    SearchBarComponent
+    SearchBarComponent,
+    MatMenuModule,
+    RouterModule
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
@@ -20,10 +23,23 @@ import { SearchBarComponent } from '../../../shared/components/search-bar/search
 export class ToolbarComponent {
 
   @Output() searchValue = new EventEmitter<string>();
+  @Input() showSearchBar!: boolean;
+
+    constructor(private router: Router) {
+
+  }
 
 
   searchCharacters(value: string): void {
     this.searchValue.emit(value)
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/home']);
+  }
+  goToComics(): void {
+    this.router.navigate(['/comics']);
+
   }
 
 }

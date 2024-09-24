@@ -1,14 +1,14 @@
-<app-toolbar (searchValue)="searchCharacters($event)" [showSearchBar]="true"></app-toolbar>
+<app-toolbar [showSearchBar]="false"></app-toolbar>
 <div class="main-container"
     infiniteScroll
     [infiniteScrollDistance]="1"
     (scrolled)="onScroll()"
 >
-@for (character of charactersList; track character) {
-    <app-character-list-item 
-        [character]="character">
-    </app-character-list-item>
-    } 
+@for (comic of comicsList; track comic) {
+    <app-comic-list-item 
+        [comic]="comic">
+    </app-comic-list-item>
+} 
 </div>
 <app-scroll-top-btn (scrollToTop)="scrollTop()"></app-scroll-top-btn>
 @if(isLoading){
