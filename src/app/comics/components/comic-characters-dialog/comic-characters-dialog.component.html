@@ -1,7 +1,15 @@
-<div class="main-container">
-    @for (character of characters; track character) {
-        <app-character-list-item 
-        [character]="character">
-    </app-character-list-item>
-} 
-</div>
+
+<mat-dialog-content>
+    <div class="main-container">
+        @for (character of characters; track character) {
+            <app-character-list-item 
+                [character]="character">
+            </app-character-list-item>
+        }    
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]>
+        Close
+    </button>
+</mat-dialog-actions>

@@ -49,7 +49,7 @@ export class ComicListItemComponent {
   openCharactersDialog(characters: Character[]): void {
     this.detailsDialog.open(ComicCharactersDialogComponent, {
       data: characters,
-      height: '80vh',
+      height: '70vh',
       maxHeight: '85vh',
       width: '85vw',
       maxWidth: '85vw',
