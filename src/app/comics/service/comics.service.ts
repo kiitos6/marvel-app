@@ -10,7 +10,6 @@ import { ComicsResponseDTO } from '../../shared/models/comic';
 export class ComicsService {
 
   baseUrl: string = 'http://gateway.marvel.com';
-  apikey: string = '62c41ce60162ebd1b09b2a679102fc95';
 
 
   constructor(
@@ -23,7 +22,6 @@ export class ComicsService {
       this.baseUrl + '/v1/public/comics',
       {
         params: {
-          apikey: this.apikey,
           offset: offset
         }
       }
@@ -35,7 +33,6 @@ export class ComicsService {
       url, 
       {
         params: {
-          apikey: this.apikey,
           limit: 100
         }
       }

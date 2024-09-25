@@ -9,7 +9,7 @@ import { CharactersResponseDTO } from '../../shared/models/character';
 export class HomeService {
 
   baseUrl: string = 'http://gateway.marvel.com';
-  apikey: string = '62c41ce60162ebd1b09b2a679102fc95';
+  
 
 
   constructor(
@@ -21,7 +21,6 @@ export class HomeService {
       this.baseUrl + '/v1/public/characters',
       {
         params: {
-          apikey: this.apikey,
           offset: offset
         }
       }
@@ -34,7 +33,6 @@ export class HomeService {
         this.baseUrl + '/v1/public/characters',
         {
           params: {
-            apikey: this.apikey,
             nameStartsWith: name
           }
         }
@@ -42,4 +40,5 @@ export class HomeService {
     }
     return this.getCharactersList(0);
   }
+  
 }
