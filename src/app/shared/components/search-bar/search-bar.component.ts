@@ -5,6 +5,8 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { debounceTime, Subject } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-search-bar',
@@ -14,7 +16,8 @@ import { debounceTime, Subject } from 'rxjs';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss'
@@ -25,11 +28,27 @@ export class SearchBarComponent {
   debouncer: Subject<string> = new Subject<string>();
 
   value: string = '';
+  width: number = 250;
 
-  constructor() {
+
+  constructor(
+    private responsive: BreakpointObserver
+  ) {
     this.debouncer
       .pipe(debounceTime(2000))
       .subscribe((value) => this.searchValue.emit(value));
+  }
+
+  ngOnInit(): void {
+    this.initBreakpointListener();
+  }
+
+  private initBreakpointListener(): void {
+    this.responsive.observe(Breakpoints.HandsetPortrait)
+      .subscribe(result => {
+        this.width = result.matches ? 180 : 250;
+      });
+
   }
 
   onKeyUp(): void {

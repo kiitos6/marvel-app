@@ -6,9 +6,12 @@
       <button mat-menu-item (click)="goToHome()">Characters</button>
       <button mat-menu-item (click)="goToComics()">Comics</button>
     </mat-menu>
-    <span>Marvel Guide App</span>
+    <span [ngClass]="{'title-mobile': isMobileDevice}">Marvel Guide App</span>
     <span class="example-spacer"></span>
     @if(showSearchBar){
-      <app-search-bar (searchValue)="searchCharacters($event)"></app-search-bar>
+      <app-search-bar 
+        class="search-bar-position" 
+        (searchValue)="searchCharacters($event)">
+      </app-search-bar>
     }
 </mat-toolbar>

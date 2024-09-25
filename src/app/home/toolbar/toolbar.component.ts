@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { SearchBarComponent } from '../../shared/components/search-bar/search-bar.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { Router, RouterModule } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-toolbar',
@@ -15,17 +17,32 @@ import { Router, RouterModule } from '@angular/router';
     MatIconModule,
     SearchBarComponent,
     MatMenuModule,
-    RouterModule
+    RouterModule,
+    CommonModule
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
 
   @Output() searchValue = new EventEmitter<string>();
   @Input() showSearchBar!: boolean;
+  isMobileDevice: boolean = false;
 
-    constructor(private router: Router) {
+    constructor(
+      private router: Router,
+      private responsive: BreakpointObserver
+    ) { }
+    
+  ngOnInit(): void {
+    this.initBreakpointListener();
+  }
+
+  private initBreakpointListener(): void {
+    this.responsive.observe(Breakpoints.HandsetPortrait)
+      .subscribe(result => {
+        this.isMobileDevice = result.matches ? true : false;
+      });
 
   }
 
